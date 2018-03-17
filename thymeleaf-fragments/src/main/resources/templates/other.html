@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf Fragments: about</title>
+</head>
+<body>
+	<header th:replace="fragments/general :: header"> </header>
+	<div
+		th:replace="${#lists.size(data) > 0} ? ~{fragments/menus :: dataPresent} : ~{fragments/menus :: noData}">
+	</div>
+	<table>
+		<thead th:replace="fragments/tables :: fields(~{ :: .myFields})">
+			<tr class="myFields">
+
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<div th:replace="fragments/tables :: tableBody(tableData=${data})"></div>
+	</table>
+	<div th:replace="fragments/general :: footer"></div>
+</body>
+</html>
